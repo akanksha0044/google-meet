@@ -1,0 +1,23 @@
+.cnt{
+    width: 700px;
+    height: 400px;
+    background-color: whitesmoke; 
+}
+.singimg{
+    width: 100px;
+    height: 50px;
+}
+.show-password-checkbox{
+    margin-left: 10px;
+    
+}
+.img2{
+    height: 270px;
+    width: 270px;
+}
+.error{
+    color: red !important;
+}
+.error-message{
+    color:red;
+}
