@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react'
 import './main.css';
 import {EmergencyRecording,Keyboard} from "@mui/icons-material";
 
-function Main() {
-  
+const Main=({ setRoomName, handleSubmit })=> {
+  const handleRoomNameChange=(e)=>{
+    console.log("handleSubmit prop:", handleSubmit);
+    setRoomName(e.target.value);
+  };
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleSlide = (event) => {
@@ -22,11 +25,13 @@ function Main() {
             <p className='fs-5 mt-4 '>We re-engineered the service we built for secure business<br></br> meetings, Google Meet, to make it free and available for all.</p>
             <div className='row '>
             <div className='col-md-4 mt-3 ms-4'>
-            <button type="button" class="btn btn-primary btn-lg "><EmergencyRecording className='pr-2'/>New Meeting</button>
+            <button type="button" class="btn btn-primary btn-lg " onClick={handleSubmit}><EmergencyRecording className='pr-2' />New Meeting</button>
             </div>
             <div className='col-md-4 mt-3'>
               {/* <Keyboard className='position-absolute top-95'/> */}
-            <input className='input' placeholder='Enter a code or link'/>
+            <input className='input' placeholder='Enter a code or link' onChange={handleRoomNameChange}/>
+            
+            <button onClick={handleSubmit}>Join</button>
             </div>
             <hr className='sideHr ms-4'/>
             </div>
