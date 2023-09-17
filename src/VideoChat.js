@@ -27,7 +27,7 @@ const VideoChat = () => {
     const data = await fetch("video/token", {
       method: "POST",
       body: JSON.stringify({
-        identity: username, 
+        identity: username,
         room: roomName,
       }),
       headers: {
@@ -74,21 +74,21 @@ const VideoChat = () => {
   }, [handleLogout]);
 
   let render;
-  if(room){
-    render=(
-      <Room roomName={roomName} room={room} handleSubmit={handleSubmit}/>
+  if (room) {
+    render = (
+      <Room roomName={roomName} room={room} handleSubmit={handleSubmit} />
     )
-  }else {
+  } else {
     render = (
       <>
         <Header />
         {connecting ? <h1>Loading</h1> : null}:{
           <Main
-          username={username}
-          roomName={roomName}
-          handleSubmit={handleSubmit}
-          
-          setRoomName={setRoomName}
+            username={username}
+            roomName={roomName}
+            handleSubmit={handleSubmit}
+
+            setRoomName={setRoomName}
           />
         }
       </>
