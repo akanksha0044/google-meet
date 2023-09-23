@@ -9,23 +9,40 @@ const Main = ({ setRoomName, handleSubmit }) => {
   };
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const handleSlide = (event) => {
-    setCurrentSlide(event.to);
+  const handleSlide = (index) => {
+    if (currentSlide) {
+      setCurrentSlide(index);
+    }
   }
+
+  const mouseDownCoords = e => {
+    window.checkForDrag = e.clientX;
+  };
+
+  const clickOrDrag = e => {
+    const mouseUp = e.clientX;
+    console.log(mouseUp)
+    console.log(window.checkForDrag)
+    if (
+      mouseUp < window.checkForDrag + 5 &&
+      mouseUp > window.checkForDrag - 5
+    ) {
+      console.log('clicked')
+    } else {
+      console.log('not clicked')
+    }
+  };
 
   return (
     <>
       <div className='row ps-3'>
-
-
-
         <div className='col-md-6 ' >
           <h1 className="display-5 fw-normal  mt-5">Premium video meetings Now free for everyone
           </h1>
           <p className='fs-5 mt-4 '>We re-engineered the service we built for secure business<br></br> meetings, Google Meet, to make it free and available for all.</p>
           <div className='row '>
             <div className='col-md-4 mt-3 ms-4'>
-              <button type="button" class="btn btn-primary btn-lg " onClick={handleSubmit}><EmergencyRecording className='pr-2' />New Meeting</button>
+              <button type="button" className="btn btn-primary btn-lg " onClick={handleSubmit}><EmergencyRecording className='pr-2' />New Meeting</button>
             </div>
             <div className='col-md-4 mt-3'>
               {/* <Keyboard className='position-absolute top-95'/> */}
@@ -44,15 +61,16 @@ const Main = ({ setRoomName, handleSubmit }) => {
 
         <div className='col-md-6 mt-5 '>
           <div className="d-flex ms-5">
-            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" onSlide={handleSlide}>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
+            <div id="carouselExampleFade" className="carousel slide carousel-fade" onMouseDown={e => mouseDownCoords(e)}
+              onMouseUp={e => clickOrDrag(e)} data-bs-ride="carousel">
+              <div className="carousel-inner">
+                <div className="carousel-item active">
                   <img src="./image/fi.svg" className="d-block " alt="..." />
                 </div>
-                <div class="carousel-item">
+                <div className="carousel-item">
                   <img src="./image/se.svg" className="d-block " alt="..." />
                 </div>
-                <div class="carousel-item">
+                <div className="carousel-item">
                   <img src="./image/thi.svg" className="d-block " alt="..." />
                 </div>
               </div>
@@ -72,16 +90,9 @@ const Main = ({ setRoomName, handleSubmit }) => {
             {currentSlide === 1 && <p>Second image text</p>}
             {currentSlide === 2 && <p>Third image text</p>}
           </div>
-
         </div>
-
-
-
-
-
       </div>
     </>
-
   )
 }
 
