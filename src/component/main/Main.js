@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './main.css';
 import { EmergencyRecording, Keyboard } from "@mui/icons-material";
+import $ from "jquery";
 
 const Main = ({ setRoomName, handleSubmit }) => {
   const handleRoomNameChange = (e) => {
@@ -10,9 +11,7 @@ const Main = ({ setRoomName, handleSubmit }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleSlide = (index) => {
-    if (currentSlide) {
-      setCurrentSlide(index);
-    }
+    setCurrentSlide(index);
   }
 
   const mouseDownCoords = e => {
@@ -21,17 +20,20 @@ const Main = ({ setRoomName, handleSubmit }) => {
 
   const clickOrDrag = e => {
     const mouseUp = e.clientX;
-    console.log(mouseUp)
-    console.log(window.checkForDrag)
-    if (
+    if (!(
       mouseUp < window.checkForDrag + 5 &&
-      mouseUp > window.checkForDrag - 5
+      mouseUp > window.checkForDrag - 5)
     ) {
-      console.log('clicked')
-    } else {
-      console.log('not clicked')
+      if (mouseUp > window.checkForDrag) {
+        handleSlide(currentSlide > 0 ? currentSlide - 1 : 2)
+        document.getElementById("carousel-control-prev").click();
+      } else {
+        handleSlide(currentSlide < 2 ? currentSlide + 1 : 0)
+        document.getElementById("carousel-control-next").click();
+      }
     }
   };
+  $('#carouselExampleFade').on('dragstart', function (event) { event.preventDefault(); });
 
   return (
     <>
@@ -47,10 +49,10 @@ const Main = ({ setRoomName, handleSubmit }) => {
             <div className='col-md-3 mt-3 '>
               {/* <Keyboard className='position-absolute top-95'/> */}
               <input className='input' placeholder='Enter a code or link' onChange={handleRoomNameChange} />
-               </div>
-               <div className='col-md-2 mt-4 ms-3'>
-                   <button className='"btn btn-outline-dark border border-dark' onClick={handleSubmit}>Join</button>
-                   </div>
+            </div>
+            <div className='col-md-2 mt-4 ms-3'>
+              <button className='"btn btn-outline-dark border border-dark' onClick={handleSubmit}>Join</button>
+            </div>
             <hr className='sideHr ms-4' />
           </div>
           <div className='col-md-6 mt-1 ms-3 '>
@@ -63,7 +65,7 @@ const Main = ({ setRoomName, handleSubmit }) => {
         <div className='col-md-6 mt-5 '>
           <div className="d-flex ms-5">
             <div id="carouselExampleFade" className="carousel slide carousel-fade" onMouseDown={e => mouseDownCoords(e)}
-              onMouseUp={e => clickOrDrag(e)} data-bs-ride="carousel">
+              onMouseUp={e => clickOrDrag(e)} data-bs-ride="carousel" >
               <div className="carousel-inner">
                 <div className="carousel-item active">
                   <img src="./image/fi.svg" className="d-block " alt="..." />
@@ -75,11 +77,11 @@ const Main = ({ setRoomName, handleSubmit }) => {
                   <img src="./image/thi.svg" className="d-block " alt="..." />
                 </div>
               </div>
-              <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <button className="carousel-control-prev" id="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
               </button>
-              <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+              <button className="carousel-control-next" id="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
               </button>
@@ -93,7 +95,7 @@ const Main = ({ setRoomName, handleSubmit }) => {
           </div>
         </div>
       </div>
-     
+
     </>
   )
 }

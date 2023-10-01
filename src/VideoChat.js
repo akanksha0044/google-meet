@@ -6,10 +6,9 @@ import Video from 'twilio-video'; // Correct typo 'Vedio' to 'Video'
 import { render } from '@testing-library/react';
 import Room from './component/Room/Room';
 import Header from './component/header/Header';
-
 import Main from './component/main/Main';
 
-const VideoChat = () => {
+const VideoChat = ({ setLoading, loading }) => {
   const [roomName, setRoomName] = useState(uuidv4); // Fix typo in state name
   const [room, setRoom] = useState(null);
   const [username, setUsername] = useState("");
@@ -21,7 +20,6 @@ const VideoChat = () => {
   }, [currentUser]);
 
   const handleSubmit = useCallback(async () => {
-    console.log("nik");
     setConnecting(true);
 
     const data = await fetch("video/token", {
@@ -81,8 +79,8 @@ const VideoChat = () => {
   } else {
     render = (
       <>
-        <Header />
-        {connecting ? <h1>Loading</h1> : null}:{
+        <Header setLoading={setLoading} loading={loading} />
+        {connecting ? <h1>Loading :</h1> : null}{
           <Main
             username={username}
             roomName={roomName}

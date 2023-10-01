@@ -49,7 +49,6 @@ function Signup({ showSignup }) {
     auth.createUserWithEmailAndPassword(formData.email, formData.password)
       .then(async () => {
         try {
-          console.log(formData.firstName, formData.lastName)
           await auth.currentUser.updateProfile({
             displayName: `${formData.firstName} ${formData.lastName}`,
           });
