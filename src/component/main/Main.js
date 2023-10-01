@@ -44,12 +44,13 @@ const Main = ({ setRoomName, handleSubmit }) => {
             <div className='col-md-4 mt-3 ms-4'>
               <button type="button" className="btn btn-primary btn-lg " onClick={handleSubmit}><EmergencyRecording className='pr-2' />New Meeting</button>
             </div>
-            <div className='col-md-4 mt-3'>
+            <div className='col-md-3 mt-3 '>
               {/* <Keyboard className='position-absolute top-95'/> */}
               <input className='input' placeholder='Enter a code or link' onChange={handleRoomNameChange} />
-
-              <button onClick={handleSubmit}>Join</button>
-            </div>
+               </div>
+               <div className='col-md-2 mt-4 ms-3'>
+                   <button className='"btn btn-outline-dark border border-dark' onClick={handleSubmit}>Join</button>
+                   </div>
             <hr className='sideHr ms-4' />
           </div>
           <div className='col-md-6 mt-1 ms-3 '>
@@ -92,6 +93,7 @@ const Main = ({ setRoomName, handleSubmit }) => {
           </div>
         </div>
       </div>
+     
     </>
   )
 }

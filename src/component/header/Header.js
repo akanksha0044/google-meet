@@ -3,12 +3,13 @@ import './header.css';
 import { HelpOutline, Feedback, Settings, Apps, PersonAddAlt1, Logout } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import { auth, storage } from "../../lib/firebase";
-
+import { AddAPhoto } from "@mui/icons-material";
 
 const Header = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [user, setUser] = useState(null);
   const [show, setShow] = useState(false);
+  const [profileshow,setProfileShow]=useState(false);
   const inputRef = useRef(null);
 
   const handleImageUpload = async (e) => {
@@ -64,26 +65,27 @@ const Header = () => {
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             <img src="./image/logo1.png" alt="" width="40" height="40" />
-            <span>Google Meet</span>
+            
           </a>
           <ul className="nav justify-content-end">
             <li className="nav-item">
-              <a className='fs-5 navbar-brand'>{formatDate(currentDateTime)}</a>
+              <a className='fs-5 navbar-brand' href='/'>{formatDate(currentDateTime)}</a>
             </li>
             <li className="nav-item">
-              <a className="navbar-brand" href="#"><HelpOutline /></a>
+              <a className="navbar-brand" href="/"><HelpOutline /></a>
             </li>
             <li className="nav-item">
-              <a className="navbar-brand" href="#"><Feedback /></a>
+              <a className="navbar-brand" href="/"><Feedback /></a>
             </li>
             <li className="nav-item">
-              <a className="navbar-brand" href="#"><Settings /></a>
+              <a className="navbar-brand" href="/"><Settings /></a>
             </li>
             <li className="nav-item ">
-              <a className="navbar-brand" href="#"><Apps /></a>
+              <a className="navbar-brand" href="/"><Apps /></a>
             </li>
             <li className="nav-item ">
               <img src={user ? user.photoURL ? user?.photoURL : './image/user.png' : './image/user.png'} alt='' className='topImg' onClick={() => setShow(!show)} />
+              
             </li>
           </ul>
         </div>
@@ -98,9 +100,11 @@ const Header = () => {
                     <div className='card-body'>
                       <div className='row'>
                         <div className='col-md-2'>
-                          {/* <img src='./image/ak.jpg' alt='' className='topImg2'/> */}
-                          <img src={user ? user.photoURL ? user?.photoURL : './image/user.png' : './image/user.png'} alt='' className='topImg2' onClick={() => inputRef.current.click()} />
+                          
+                          <img src={user ? user.photoURL ? user?.photoURL : './image/user.png' : './image/user.png'} alt='' className='topImg2' onClick={() => setProfileShow(!profileshow)}  />
+                          
                           <input type="file" accept="image/*" ref={inputRef} style={{ display: 'none' }} onChange={handleImageUpload} />
+                          <span className='camera' onClick={() => inputRef.current.click()}><AddAPhoto/></span>
                         </div>
                         <div className='col-md-10'>
                           <p>
@@ -140,6 +144,37 @@ const Header = () => {
           </div>
         </div>
       }
+      <div>
+        {
+          profileshow &&<div>
+            <div class="card" style={{width: "23rem",height:"25rem"}}>
+  <div class="card-body ">
+    <div className='profilemain'>
+    
+<img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google" className='profile'/>
+<h3 className='ml-2'>Account</h3>
+
+
+
+    </div>
+   
+    <h6 className='mt-2'>Profile Picture</h6>
+    <p>A picture helps people recognize you and lets you know when you’re signed in to your account</p>
+    <hr></hr>
+    <img src={user ? user.photoURL ? user?.photoURL : './image/user.png' : './image/user.png'} className='profileimg mt-3' alt=""/>
+    <div className='probtn mt-5 ml-5'>
+
+    <button type="button" class="btn btn-secondary mr-2" onClick={() => inputRef.current.click()}>Change</button>
+    <button type="button" class="btn btn-secondary">Remove</button>
+    </div>
+  </div>
+</div>
+          </div>
+        }
+     
+
+       
+      </div>
     </div>
   )
 }

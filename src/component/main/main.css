@@ -21,4 +21,24 @@
 h5{
     color: brown;
 }
+.profilemain{
+    display: flex;
+    justify-content: center;
+}
+.profile{
+    width: 80px;
+    height: 40px;
+}
+.profileimg{
+    width: 100px;
+    height: 95px;
+    border-radius: 50%;
+}
+.probtn{
+    display: flex;
+    justify-content: center;
+    
+    
+}
+
  
