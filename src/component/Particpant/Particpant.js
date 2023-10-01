@@ -5,6 +5,7 @@ const Particpant = ({ participant }) => {
     const [audioTracks, setaudioTracks] = useState([])
     const videoRef = useRef();
     const audioRef = useRef();
+
     const trackpubsToTracks = (trackMap) =>
         Array.from(trackMap.values())
             .map((publication) => publication.track)
