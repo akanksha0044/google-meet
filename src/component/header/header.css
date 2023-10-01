@@ -1,32 +1,38 @@
-.topImg{
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-    margin-right: 10px;
+.topImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  margin-right: 10px;
+  object-fit: cover;
 }
-.topImg2{
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-    margin-right: 10px;
+.topImg2 {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  margin-right: 10px;
+  object-fit: cover;
 }
 .position-absolute.top-40.end-0 {
-    z-index: 1000;
-  }
-  .camera{
-    font-size: 2px; 
-    border-radius: 50%;
-    background-color: green;
-   color: white;
-    position: absolute;
-    top:47px;
-    left: 65px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-  }
+  z-index: 1000;
+}
+.camera {
+  font-size: 2px;
+  border-radius: 50%;
+  background-color: green;
+  color: white;
+  position: absolute;
+  top: 120px;
+  left: 145px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+}
+
+.edit_profile_wrapper {
+  width: fit-content;
+}
