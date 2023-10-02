@@ -195,7 +195,7 @@ const Header = ({ setLoading, loading }) => {
           <Button variant="secondary" onClick={() => setProfileShow(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={save_profile_pic}>
+          <Button variant="primary" onClick={save_profile_pic} disabled={profile_url == new_profile_url}>
             Save Changes
           </Button>
         </Modal.Footer>
